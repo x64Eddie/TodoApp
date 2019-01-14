@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:no_todo_app/Model/notodo_item.dart';
+import 'package:no_todo_app/Utils/database_client.dart';
 
 class NoTodoScreen extends StatefulWidget{
 
@@ -8,6 +10,17 @@ class NoTodoScreen extends StatefulWidget{
 
 class _NoTodoScreen extends State<NoTodoScreen>{
   final TextEditingController _textEditingController = new TextEditingController();
+  var db = new DatabaseHelper();
+
+  //Handling the message that the user inserted into the app
+  void _handleSubmitted(String text) async{
+    _textEditingController.clear();
+
+    NoDoItem noDoItem = new NoDoItem(text, DateTime.now().toIso8601String());
+    int savedItemId = await db.saveItem(noDoItem);
+
+    print("Item Saved id: $savedItemId");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +58,7 @@ class _NoTodoScreen extends State<NoTodoScreen>{
       actions: <Widget>[
         new FlatButton(
             onPressed: (){
-              //_handleSubmit(_textEditingController.text);
+              _handleSubmitted(_textEditingController.text);
               _textEditingController.clear();
             },
             child: Text("Save")
