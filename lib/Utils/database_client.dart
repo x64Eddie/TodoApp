@@ -28,7 +28,7 @@ class DatabaseHelper{
 
   initDb() async{
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, "nodo_db.db");
+    String path = join(documentDirectory.path, "todo_db.db");
     var ourDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return ourDb;
   }
@@ -48,7 +48,7 @@ class DatabaseHelper{
 
   Future<List> getItems() async{
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableName ORDER BY $columnItemName ASC")
+    var result = await dbClient.rawQuery("SELECT * FROM $tableName ORDER BY $columnItemName ASC");//acceding order
     return result.toList();
   }
 

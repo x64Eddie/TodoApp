@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//This takes care of all the mapping of the values.
 class NoDoItem extends StatelessWidget{
   String _itemName;
   String _dateCreated;
