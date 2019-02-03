@@ -54,7 +54,8 @@ class _NoTodoScreen extends State<NoTodoScreen>{
                         trailing: new Listener(
                           key: new Key(_itemList[index].itemName),
                           child: new Icon(Icons.remove_circle),
-                          onPointerDown: (pointerEvent) => debugPrint(""),
+                          onPointerDown: (pointerEvent) =>
+                            _deleteNoDo(_itemList[index].id, index),
                         ),
                       ),
                     );
@@ -124,4 +125,14 @@ class _NoTodoScreen extends State<NoTodoScreen>{
       //print("Db Items: ${noDoItem.itemName}");
     });
   }
+
+  //deleting the item from the list.
+  _deleteNoDo(int id, int index)async{
+      debugPrint("Deleted Item!");
+      await db.deleteItem(id);
+      setState(() {
+        _itemList.removeAt(index);
+      });
+  }
+
 }
