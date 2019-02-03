@@ -88,7 +88,7 @@ class _NoTodoScreen extends State<NoTodoScreen>{
                 autofocus: true,
                 decoration: new InputDecoration(
                   labelText: "Item",
-                  hintText: "eg. Don't buy stuff",
+                  hintText: "eg. Homework due next week",
                   icon: new Icon(Icons.note_add)
                 ),
               )
