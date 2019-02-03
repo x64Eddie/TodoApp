@@ -98,6 +98,7 @@ class _NoTodoScreen extends State<NoTodoScreen>{
             onPressed: (){
               _handleSubmitted(_textEditingController.text);
               _textEditingController.clear();
+              Navigator.pop(context);
             },
             child: Text("Save")
         ),
@@ -116,9 +117,11 @@ class _NoTodoScreen extends State<NoTodoScreen>{
   _readNoDoList() async{
     List items = await db.getItems();
     items.forEach((item){
-      NoDoItem noDoItem = NoDoItem.map(item);
-
-      print("Db Items: ${noDoItem.itemName}");
+      //NoDoItem noDoItem = NoDoItem.map(item);
+      setState(() {
+          _itemList.add(NoDoItem.map(item));
+      });
+      //print("Db Items: ${noDoItem.itemName}");
     });
   }
 }
